@@ -24,7 +24,7 @@ INCLUDE = -I ./ -I $(LIBFT_PATH)
 CC =		gcc
 FLAGS =	-Wall -Werror -Wextra -g3 -O3 #-fsanitize=leak
 GDB = -ggdb
-VAL = valgrind --leak-check=full --track-origins=yes
+VAL = valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes
 
 # clean
 RM =		-rm -f

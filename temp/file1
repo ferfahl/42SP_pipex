@@ -1,1 +1,18 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+main
+
+pipe()
+fork()1
+
+1-> child
+	dup2 arq, 0
+	pipe[1], 1
+	execv
+parent
+fork()2
+2-> child2
+	dup2(pipe[0], 0)
+	dup2(test2, 1)
+	execv
+waitpid(&child)
+waitpid(&child2)
+exit();
