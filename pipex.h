@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/22 03:06:05 by feralves         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:39:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,16 @@
 #include <fcntl.h>
 
 #include "libft/libft.h"
+
 //Structs
+typedef struct s_data
+{
+	int		index;
+	int		count;
+	char	*temp1;
+	char	parent;
+	char	child;
+}				t_data;
 
 //Functions
 

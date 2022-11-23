@@ -5,41 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 12:55:40 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/22 03:50:26 by feralves         ###   ########.fr       */
+/*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
+/*   Updated: 2022/11/23 12:14:31 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main(int argc, char *argv[], char *envp[])
+void	if_error(char *message, t_data pipes)
 {
-//	char	*file1;
-	int		fd;
-	int		index;
-	char *path = "/usr/bin/cat";
-	char *cmd[2] = {"cat", NULL};
-
-	index = 0;
-	int	child = fork();
-	if (child == 0)
-	{
-		int exe = execve(path, cmd, envp);
-		ft_printf("Error?\n");
-		return (exe);
-	}
-	while (argv[index] && argc < 5)
-	{
-		fd = open(argv[index], O_RDONLY);
-		if (fd == -1)
-			perror(argv[index]);
-		ft_printf("%s\n", argv[index]);
-		index++;
-	}
-	int status;
-	waitpid(child, &status, 0);
-	if (WISEXIT)
-	return (0);
-
+	ft_printf("%s\n", message);
+	free(t_data);
+	exit(1);
 }
-
+/* int	main(int argc, char *argv[], char *envp[])
+{
+	t_data	pipes;
+	
+	if (argc != 5)
+	{
+		ft_printf("Wrong number of arguments for pipex\n");
+		exit(1);
+	}
+	pipes = (t_data *)ft_calloc(1, sizeof(t_data));
+	if (pipes == NULL)
+		if_error("Calloc error", pipes);
+} */

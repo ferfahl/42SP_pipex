@@ -1,7 +1,8 @@
 #####################INPUTS#####################
 
 #scr functions
-MANDATORY_FILES =	main.c
+MANDATORY_FILES =	main.c \
+			test.c
 
 BONUS_FILES =
 
