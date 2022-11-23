@@ -1,9 +1,9 @@
 #####################INPUTS#####################
 
 #scr functions
-MANDATORY_FILES =	
+MANDATORY_FILES =	main.c
 
-BONUS_FILES =	
+BONUS_FILES =
 
 #static library's name
 NAME =	pipex
@@ -13,11 +13,11 @@ B_NAME = pipex_bonus
 OBJPATH = temps
 MANDATORY_PATH = sources
 BONUS_PATH = bonus
-LIBFT_PATH =	./libs/libft
+LIBFT_PATH =	./libft
 LIBFT =			$(LIBFT_PATH)/libft.a
 
 #header to libft.h
-INCLUDE = -I ./ -I $(LIBFT_PATH) -I $(MLX_PATH)
+INCLUDE = -I ./ -I $(LIBFT_PATH)
 
 #compiling
 CC =		gcc
@@ -68,19 +68,19 @@ $(OBJPATH)/%.o: $(BONUS_PATH)/%.c $(HEADER)
 
 #mcheck
 mem:
-		$(VAL) ./$(NAME) 
+		$(VAL) ./$(NAME)
 
 #mcheck_bonus
 bmem:
-		$(VAL) ./$(B_NAME) 
+		$(VAL) ./$(B_NAME)
 
 #run pipex
 pipe:
-		make && clear && ./$(NAME) 
+		make && clear && ./$(NAME)
 
 #run pipex_bonus
 pipexx:
-		make && clear && ./$(B_NAME) 
+		make && clear && ./$(B_NAME)
 
 #remove objects
 clean:
