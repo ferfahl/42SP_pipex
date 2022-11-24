@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   first_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 12:55:40 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/23 17:45:59 by feralves         ###   ########.fr       */
+/*   Created: 2022/11/23 17:40:28 by feralves          #+#    #+#             */
+/*   Updated: 2022/11/23 17:40:42 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ char	*get_path(char *envp[], char *cmd)
 	while (ft_strncmp(envp[i], "PATH=", 5))
 		i++;
 	possible_paths = ft_split(&envp[i][5], ':');
+//	ft_printf_array(possible_paths);
 	right_path = find_command(possible_paths, cmd);
+//	ft_printf("Right path: %s\n", right_path);
 	if (!right_path)
 		return (NULL);
 	return (right_path);
@@ -73,7 +75,7 @@ int main(int argc, char *argv[], char *envp[])
 		dup2(fd, 0);
 		dup2(cavalinho[1], 1);
 		int exe = execve(path1, cmd, envp);
-		ft_printf("Child 1 did not execute!\n");
+		ft_printf("Error?\n");
 		return (exe);
 	}
 	close(fd);
@@ -83,7 +85,7 @@ int main(int argc, char *argv[], char *envp[])
 		close(cavalinho[1]);
 		dup2(cavalinho[0], 0);
 		int exe2 = execve(path2, cmd2, envp);
-		ft_printf("Child 2 did not execute!\n");
+		ft_printf("Error?\n");
 		return (exe2);
 	}
 	close(cavalinho[1]); //fechando um lado do pipe
@@ -95,7 +97,6 @@ int main(int argc, char *argv[], char *envp[])
 	{
 		status = WEXITSTATUS(status);
 		ft_printf("child's status: %d\n", status);
-	}	
+	}
 	return (0);
 }
-
