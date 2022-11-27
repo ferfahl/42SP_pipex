@@ -6,11 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:40:28 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/23 17:40:42 by feralves         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:31:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+/* #include "pipex.h"
 
 char	*find_command(char **possible_paths, char *cmd)
 {
@@ -99,4 +99,4 @@ int main(int argc, char *argv[], char *envp[])
 		ft_printf("child's status: %d\n", status);
 	}
 	return (0);
-}
+} */

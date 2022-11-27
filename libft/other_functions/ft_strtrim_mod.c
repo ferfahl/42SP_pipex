@@ -6,11 +6,19 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:08:12 by feralves          #+#    #+#             */
-/*   Updated: 2022/10/16 12:14:37 by feralves         ###   ########.fr       */
+/*   Updated: 2022/11/27 19:59:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/**
+*@brief allocates and returns a copy of 's1' with the characters specified in 
+*'set' removed from begining and end of string, input modified from original
+*@param s1: The string to be trimmed.
+*@param set: The reference set of characters to trim.
+*@return The trimmed string. NULL if the allocation fails.
+*/
 
 char	*ft_strtrim_mod(char *s1, char const *set)
 {

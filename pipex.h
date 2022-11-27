@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/23 17:46:52 by feralves         ###   ########.fr       */
+/*   Updated: 2022/11/27 19:57:59 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 typedef struct s_data
 {
 	int	index;
+	int	fd1;
+	int	fd2;
+	char	**cmd1;
+	char	**cmd2;
+	char	**temp;
 }				t_data;
 
 //Functions
