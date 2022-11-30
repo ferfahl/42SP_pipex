@@ -2,12 +2,11 @@
 
 #scr functions
 MANDATORY_FILES =	main.c \
-			cmd_utils.c
+			cmd_utils.c \
+			args_utils.c \
+			pipex_exec.c
 
 BONUS_FILES =
-
-STUDIES_FILES = fork.c \
-		first_pipe.c
 
 #static library's name
 NAME =	pipex
@@ -19,9 +18,6 @@ MANDATORY_PATH = sources
 BONUS_PATH = bonus
 LIBFT_PATH =	./libft
 LIBFT =			$(LIBFT_PATH)/libft.a
-
-SNAME = studypipe
-STUDIES_PATH = studies
 
 #header to libft.h
 INCLUDE = -I ./ -I $(LIBFT_PATH)
@@ -40,8 +36,6 @@ RM_DIR =	rm -rf
 OBJ_MANDATORY = $(MANDATORY_FILES:%.c=$(OBJPATH)/%.o)
 OBJ_BONUS = $(BONUS_FILES:%.c=$(OBJPATH)/%.o)
 
-OBJ_STUDIES = $(STUDIES_FILES:%.c=$(OBJPATH)/%.o)
-
 #####################RULES#####################
 
 #make
@@ -58,7 +52,6 @@ $(OBJPATH):
 $(LIBFT):
 		make -C $(LIBFT_PATH)
 
-
 #rule name - make pipex
 $(NAME): $(LIBFT)  $(OBJ_MANDATORY)
 		cc $(FLAGS) -o $(NAME) $(OBJ_MANDATORY) $(LIBFT)
@@ -74,17 +67,6 @@ $(OBJPATH)/%.o: $(MANDATORY_PATH)/%.c $(HEADER)
 #compile BONUS
 $(OBJPATH)/%.o: $(BONUS_PATH)/%.c $(HEADER)
 		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
-
-
-#rule name - make studies
-$(SNAME): $(LIBFT) $(OBJ_STUDIES)
-		cc $(FLAGS) -o $(SNAME) $(OBJ_STUDIES) $(LIBFT)
-#compile studies
-$(OBJPATH)/%.o: $(STUDIES_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
-#studies
-study: $(OBJPATH) $(SNAME)
-
 
 #mcheck
 mem:
