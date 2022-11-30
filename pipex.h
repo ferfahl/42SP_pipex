@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/27 19:57:59 by feralves         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:28:56 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 //Structs
 typedef struct s_data
 {
-	int	index;
-	int	fd1;
-	int	fd2;
-	char	**cmd1;
-	char	**cmd2;
+	int		index;
+	int		status;
+	int		fd[]; //isso existe? funciona?
+	char	**cmd[];
 	char	**temp;
+	char	**path[];
 }				t_data;
 
 //Functions
