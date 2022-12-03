@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/11/29 22:28:56 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:51:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ typedef struct s_data
 {
 	int		index;
 	int		status;
-	int		fd[]; //isso existe? funciona?
-	char	**cmd[];
+	int		fd[2];
 	char	**temp;
-	char	**path[];
+	char	**path;
+	char	***cmd;
 }				t_data;
 
 //Functions
+void	if_error(char *message, t_data *pipes, int n);
+int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes);
+int	check_error_args(int argc, char *argv[], t_data *pipes);
+void	pipex_start(t_data *pipes, char *envp[]);
+
+
 
 #endif
