@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/03 18:52:54 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:32:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_error_args(int argc, char *argv[], t_data *pipes)
 		if_error("No such file or directory", pipes, 0);
 	pipes->index++;
 	pipes->fd[pipes->index] = open(
-			argv[argc - 1], O_RDONLY | O_TRUNC | O_CREAT, 0664);
+			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (pipes->fd[pipes->index] == -1)
 		if_error("Permission denied", pipes, 1);
 	return (0);

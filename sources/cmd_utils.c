@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/03 18:50:05 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:45:41 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 	char	*temp;
 	
 	index = 2;
-	while (index < argc - 2)
+	pipes->cmd = malloc(sizeof (char **) * 2);
+	pipes->path = malloc(sizeof (char **) * 2);
+	while (index <= argc - 2)
 	{
 		temp = argv[index];
 		pipes->cmd[index - 2] = ft_split(temp, ' ');
-		free(temp);
 		pipes->path[index - 2] = get_path(envp, pipes->cmd[index - 2][0]);
 		if (pipes->path[index -2] == NULL)
 			if_error("Command not found", pipes, 0);
