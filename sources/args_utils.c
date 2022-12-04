@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/04 15:32:57 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:55:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	check_error_args(int argc, char *argv[], t_data *pipes)
 	pipes->index = 0;
 	pipes->fd[pipes->index] = open(argv[1], O_RDONLY);
 	if (pipes->fd[pipes->index] == -1)
+	{
 		if_error("No such file or directory", pipes, 0);
+		pipes->fd[pipes->index] = open("/dev/null", O_RDONLY);
+	}
 	pipes->index++;
 	pipes->fd[pipes->index] = open(
 			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);

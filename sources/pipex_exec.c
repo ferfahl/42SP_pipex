@@ -6,37 +6,44 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/04 15:47:30 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:09:13 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	second_process(t_data *pipes, int fd, int cavalinho[], char *envp[])
+void	second_process(t_data *pipes, int n, int cavalinho[], char *envp[])
 {
-	int	exe;
-
 	dup2(cavalinho[0], 0);
-	dup2(pipes->fd[fd], 1);
-	close(pipes->fd[0]);
+	dup2(pipes->fd[n], 1);
 	close(cavalinho[1]);
-	exe = execve(pipes->path[1], pipes->cmd[1], NULL);
-	(void)envp;
-	if_error("Second process did not work", pipes, 1);
-	return(exe);
+	close(cavalinho[0]);
+	close(pipes->fd[0]);
+	close(pipes->fd[1]);
+	if (pipes->check[n] == 0)
+	{
+		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
+		if_error("Second process did not work", pipes, 1);
+		exit(pipes->check[n]);
+	}
+	exit(127);
 }
 
-int	first_process(t_data *pipes, int fd, int cavalinho[], char *envp[])
+void	first_process(t_data *pipes, int n, int cavalinho[], char *envp[])
 {
-	int exe;
-	
-	dup2(pipes->fd[fd], 0);
+	dup2(pipes->fd[n], 0);
 	dup2(cavalinho[1], 1);
+	close(cavalinho[1]);
 	close(cavalinho[0]);
+	close(pipes->fd[0]);
 	close(pipes->fd[1]);
-	exe = execve(pipes->path[fd], pipes->cmd[fd], envp);
-	if_error("First process did not work", pipes, 1);
-	return(exe);
+	if (pipes->check[n] == 0)
+	{
+		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
+		if_error("First process did not work", pipes, 1);
+		exit(pipes->check[n]);
+	}
+	exit(127);
 }
 
 void	pipex_start(t_data *pipes, char *envp[])
@@ -55,7 +62,6 @@ void	pipex_start(t_data *pipes, char *envp[])
 	if (child2 == 0)
 		second_process(pipes, 1, cavalinho, envp);
 	waitpid(-1, NULL, WNOHANG);
-	ft_printf("did it work?\n");
 	close(cavalinho[1]);
 	close(cavalinho[0]);
 	close(pipes->fd[0]);

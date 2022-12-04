@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/04 15:36:11 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:06:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	int		index;
 	int		status[2];
 	int		fd[2];
+	int		check[2];
 	char	**temp;
 	char	**path;
 	char	***cmd;
