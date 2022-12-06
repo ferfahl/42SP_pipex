@@ -6,28 +6,38 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/04 15:55:53 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:57:56 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	error_args(char *file, t_data *pipes, int n)
+{
+	ft_putstr_fd("bash: ", 2);
+	perror(file);
+	if (n == 0)
+		return ;
+	free (pipes);
+	exit (1);
+}
+	
 int	check_error_args(int argc, char *argv[], t_data *pipes)
 {
 	if (argc != 5)
 		if_error("Invalid number of arguments\n\
-		Needed: input_file cmd1 cmd2 output_file", pipes, 1);
+Needed: input_file cmd1 cmd2 output_file", pipes, 1);
 	pipes->index = 0;
 	pipes->fd[pipes->index] = open(argv[1], O_RDONLY);
 	if (pipes->fd[pipes->index] == -1)
 	{
-		if_error("No such file or directory", pipes, 0);
+		error_args(argv[1], pipes, 0);
 		pipes->fd[pipes->index] = open("/dev/null", O_RDONLY);
 	}
 	pipes->index++;
 	pipes->fd[pipes->index] = open(
 			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (pipes->fd[pipes->index] == -1)
-		if_error("Permission denied", pipes, 1);
+		error_args(argv[argc - 1], pipes, 1);
 	return (0);
 }

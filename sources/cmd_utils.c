@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/04 16:41:36 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:33:31 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static char	*find_command(char **possible_paths, char *cmd)
 		if (access(temp, F_OK) == 0)
 		{
 			if (access(temp, X_OK) == 0)
-				return(temp);
+				return (temp);
 			else
-				return(NULL);
+				return (NULL);
 		}
 		i++;
 	}
-	return(NULL);
+	return (NULL);
 }
 
 static char	*get_path(char *envp[], char *cmd)
@@ -40,7 +40,7 @@ static char	*get_path(char *envp[], char *cmd)
 	int		i;
 	char	**possible_paths;
 	char	*right_path;
-	
+
 	i = 0;
 	while (ft_strncmp(envp[i], "PATH=", 5))
 		i++;
@@ -55,7 +55,7 @@ int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
 	int		index;
 	char	*temp;
-	
+
 	index = 2;
 	pipes->cmd = malloc(sizeof (char **) * 2);
 	pipes->path = malloc(sizeof (char **) * 2);
