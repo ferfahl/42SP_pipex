@@ -7,27 +7,31 @@ MANDATORY_FILES =	main.c \
 			args_utils.c \
 			pipex_exec.c
 
-BONUS_FILES =
+BONUS_FILES =	main_bonus.c \
+			cmd_utils_bonus.c \
+			cmd_utils2_bonus.c \
+			args_utils_bonus.c \
+			pipex_exec_bonus.c
 
 #static library's name
-NAME =	pipex
-B_NAME = pipex_bonus
+NAME =		pipex
+B_NAME =	pipex_bonus
 
 #directories
-OBJPATH = temps
-MANDATORY_PATH = sources
-BONUS_PATH = bonus
-LIBFT_PATH =	./libft
-LIBFT =			$(LIBFT_PATH)/libft.a
+OBJPATH =			temps
+MANDATORY_PATH =	sources
+BONUS_PATH =		bonus
+LIBFT_PATH =		./libft
+LIBFT =				$(LIBFT_PATH)/libft.a
 
 #header to libft.h
-INCLUDE = -I ./ -I $(LIBFT_PATH)
+INCLUDE =	-I ./ -I $(LIBFT_PATH)
 
 #compiling
-CC =		gcc
-FLAGS =	-Wall -Werror -Wextra -g3 -O3 #-fsanitize=leak
-GDB = -ggdb
-VAL = valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes
+CC =	gcc
+FLAGS =	-Wall -Werror -Wextra -g3 -O3
+GDB =	-ggdb
+VAL =	valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes
 
 # clean
 RM =		-rm -f
@@ -68,22 +72,6 @@ $(OBJPATH)/%.o: $(MANDATORY_PATH)/%.c $(HEADER)
 #compile BONUS
 $(OBJPATH)/%.o: $(BONUS_PATH)/%.c $(HEADER)
 		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
-
-#mcheck
-mem:
-		$(VAL) ./$(NAME)
-
-#mcheck_bonus
-bmem:
-		$(VAL) ./$(B_NAME)
-
-#run pipex
-pipe:
-		make && clear && ./$(NAME)
-
-#run pipex_bonus
-pipexx:
-		make && clear && ./$(B_NAME)
 
 #remove objects
 clean:

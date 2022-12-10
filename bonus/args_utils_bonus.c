@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_utils.c                                       :+:      :+:    :+:   */
+/*   args_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:53:14 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:07:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	error_args(char *file, t_data *pipes, int n)
 
 int	check_error_args(int argc, char *argv[], t_data *pipes)
 {
-	if (argc != 5)
+	if (argc < 5)
 		error_args("Invalid number of arguments\n\
-Needed: input_file cmd1 cmd2 output_file", pipes, 1);
+Needed: input_file cmd1 cmd2 cmd[n] output_file", pipes, 1);
 	pipes->index = 0;
 	pipes->fd[pipes->index] = open(argv[1], O_RDONLY);
 	if (pipes->fd[pipes->index] == -1)
