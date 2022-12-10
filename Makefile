@@ -3,6 +3,7 @@
 #scr functions
 MANDATORY_FILES =	main.c \
 			cmd_utils.c \
+			cmd_utils2.c \
 			args_utils.c \
 			pipex_exec.c
 

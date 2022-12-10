@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/05 22:42:51 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/10 21:05:56 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,6 @@ static char	*get_path(char *envp[], char *cmd)
 	return (right_path);
 }
 
-função troca()
-{
-	enquanto até achar char [i] aspas "" ou ''
-		i++
-	trocar ' ' por caracter invalido
-}
-
-função destroca()
-{
-	enquanto char[i]
-		se achar char[i][0] aspas "" ou ''
-			destrocar invalido por ' '
-			char[i][ft_strlen - 1] = '\0'
-			ft_memmove <remover '' ou ""
-		i++
-}
-
-void ajhdsjkashd(dajshd)
-{
-	cmd = "grep 'cavalinho na chuva'"
-	
-	verificação "" ou ''
-	se (sim)
-		função de troca (espaço)->dentro das aspas, por (caracter invalido)
-	ft_split
-	se (sim)
-		função destroca
-}
-
 int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
 	int		index;
@@ -87,12 +58,16 @@ int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 
 	index = 2;
 	pipes->cmd = malloc(sizeof (char **) * 2);
+	if (!pipes->cmd)
+		if_error("Malloc error", pipes, 1);
 	pipes->path = malloc(sizeof (char **) * 2);
+	if (!pipes->path)
+		if_error("Malloc error", pipes, 1);
 	while (index <= argc - 2)
 	{
 		pipes->check[index - 2] = 0;
 		temp = argv[index];
-		pipes->cmd[index - 2] = ft_split(temp, ' ');
+		pipes->cmd[index - 2] = ft_split_pipex(temp);
 		pipes->path[index - 2] = get_path(envp, pipes->cmd[index - 2][0]);
 		if (pipes->path[index - 2] == NULL)
 		{
