@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:37:52 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:01:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	ft_free_all(t_data *pipes)
 {
@@ -46,7 +46,8 @@ int	main(int argc, char *argv[], char *envp[])
 		if_error("Calloc error", pipes, 1);
 	if (check_error_args(argc, argv, pipes))
 		return (1);
+	(void)envp;
 	if (check_cmd(argc, argv, envp, pipes))
 		return (1);
-	pipex_start(pipes, envp);
+	 pipex_start(pipes, envp);
 }

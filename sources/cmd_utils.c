@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:42:17 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:29:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_malloc_pipes(t_data *pipes)
 	pipes->cmd = malloc(sizeof (char **) * 2);
 	if (!pipes->cmd)
 		if_error("Malloc error", pipes, 1);
-	pipes->path = malloc(sizeof (char **) * 2);
+	pipes->path = malloc(sizeof (char *) * 2);
 	if (!pipes->path)
 		if_error("Malloc error", pipes, 1);
 }

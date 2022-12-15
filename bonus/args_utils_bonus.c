@@ -6,11 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 23:07:35 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:25:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	error_args(char *file, t_data *pipes, int n)
 {

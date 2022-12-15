@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_utils.c                                        :+:      :+:    :+:   */
+/*   cmd_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:42:17 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:01:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static char	*find_command(char **possible_paths, char *cmd)
 {
@@ -57,36 +57,43 @@ static char	*get_path(char *envp[], char *cmd)
 
 void	ft_malloc_pipes(t_data *pipes)
 {
-	pipes->cmd = malloc(sizeof (char **) * 2);
+	pipes->cmd = (char ***)malloc(sizeof (char **) * (pipes->n_cmd));
 	if (!pipes->cmd)
 		if_error("Malloc error", pipes, 1);
-	pipes->path = malloc(sizeof (char **) * 2);
+	pipes->path = (char **)malloc(sizeof (char *) * (pipes->n_cmd));
 	if (!pipes->path)
+		if_error("Malloc error", pipes, 1);
+	pipes->check = (int *)malloc(sizeof (int) * (pipes->n_cmd));
+	if (!pipes->check)
 		if_error("Malloc error", pipes, 1);
 }
 
 int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
 	int		index;
+	int		args;
 	char	*temp;
 
-	index = 2;
+	args = 2;
+	index = 0;
+	pipes->n_cmd = argc - 3;
 	ft_malloc_pipes(pipes);
-	while (index <= argc - 2)
+	while (index < pipes->n_cmd)
 	{
-		pipes->check[index - 2] = 0;
-		temp = argv[index];
-		pipes->cmd[index - 2] = ft_split_pipex(temp);
-		pipes->path[index - 2] = get_path(envp, pipes->cmd[index - 2][0]);
-		if (pipes->path[index - 2] == NULL)
+		pipes->check[index] = 0;
+		temp = argv[args];
+		pipes->cmd[index] = ft_split_pipex(temp);
+		pipes->path[index] = get_path(envp, pipes->cmd[index][0]);
+		if (pipes->path[index] == NULL)
 		{
-			ft_putstr_fd(pipes->cmd[index - 2][0], 2);
+			ft_putstr_fd(pipes->cmd[index][0], 2);
 			if_error(": command not found", pipes, 0);
-			pipes->check[index - 2] = -1;
-			close(pipes->fd[index - 2]);
-			pipes->fd[index - 2] = open("/dev/null", O_RDONLY);
+			pipes->check[index] = -1;
+			close(pipes->fd[index]);
+			pipes->fd[index] = open("/dev/null", O_RDONLY);
 		}
 		index++;
+		args++;
 	}
 	return (0);
 }
