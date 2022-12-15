@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/15 15:45:20 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:13:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ pid_t	child_process(int i, t_data *pipes, char *envp[], int pippin[])
 		if (child == 0)
 			first_process(pipes, 0, pippin, envp);
 	}
-	if (i == pipes->n_cmd)
+	else if (i == pipes->n_cmd)
 	{
 		child = fork();
 		if (child == 0)
@@ -88,15 +88,15 @@ pid_t	child_process(int i, t_data *pipes, char *envp[], int pippin[])
 
 void	pipex_start(t_data *pipes, char *envp[])
 {
-	int		pippin[2];
+	int		pippin[pipes->n_cmd];
 	int		status;
 	pid_t	child1;
 	pid_t	child2;
 
+	if (pipe(pippin))
+		if_error("Pipe could not be created", pipes, 1);
 	while (i <= pipes->n_cmd)
 	{
-		if (pipe(pippin))
-			if_error("Pipe could not be created", pipes, 1);
 		child = child_process(i, pipes, envp, pippin);
 		i++
 		close(pippin[1]);
