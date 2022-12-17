@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 23:01:35 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:24:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_data
 
 //Define
 # define TEMP_SPACE 1
+# define STDIN 0
+# define STDOUT 1
 
 //Functions
 void	if_error(char *message, t_data *pipes, int n);
