@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:35:10 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:34:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,4 @@ void	pipex_start(t_data *pipes, char *envp[])
 	ft_free_all(pipes);
 	exit(status);
 }
+

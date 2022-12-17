@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/11 00:01:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:24:26 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	ft_malloc_pipes(t_data *pipes)
 		if_error("Malloc error", pipes, 1);
 	pipes->check = (int *)malloc(sizeof (int) * (pipes->n_cmd));
 	if (!pipes->check)
+		if_error("Malloc error", pipes, 1);
+	pipes->pippin = (int **)malloc(sizeof (int *) * (pipes->n_cmd));
+	if (!pipes->pippin)
 		if_error("Malloc error", pipes, 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/17 19:45:45 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:30:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,58 +63,48 @@ void	first_process(t_data *pipes, int n, int *pippin[], char *envp[])
 	if_error("", pipes, 127);
 }
 
-pid_t	child_process(int i, t_data *pipes, char *envp[], int *pippin[])
+void	ft_close_pipes(t_data *pipes, int *pippin[])
 {
-	if (i == 0)
+	int	p;
+
+	p = 0;
+	while (p <= pipes->n_cmd)
 	{
-		child = fork();
-		if (child == 0)
-			first_process(pipes, 0, pippin, envp);
+		close(pippin[p][0]);
+		close(pippin[p][1]);
+		p++;
 	}
-	else if (i == pipes->n_cmd)
-	{
-		child = fork();
-		if (child == 0)
-			last_process(pipes, 1, pippin, envp);
-	}
-	else
-	{
-		child = fork();
-		if (child == 0)
-			middle_process(pipes, 1, pippin, envp);
-	}
-	return (child);
+	close(pipes->fd[0]);
+	close(pipes->fd[1]);
 }
 
 void	pipex_start(t_data *pipes, char *envp[])
 {
-	int		pippin[pipes->n_cmd][2];
 	int		status;
-	int		p;
 	int		i;
 	pid_t	child;
 
-	p = 0;
 	i = 0;
-	if (pipe(pippin))
-		if_error("Pipe could not be created", pipes, 1);
 	while (i <= pipes->n_cmd)
 	{
-		child = child_process(i, pipes, envp, pippin);
-		i++
-		waitpid(child, &status, 0);
-		if (WIFEXITED(status))
-			pipes->status = WEXITSTATUS(status);
-		wait(NULL);
-		while (p <= pipes->n_cmd)
+		if (pipe(pipes->pippin[i]))
+			if_error("Pipe could not be created", pipes, 1);
+		child = fork();
+		if (child == 0)
 		{
-			close(pippin[p][0]);
-			close(pippin[p][1]);
-			p++;
+			if (i == 0)
+				first_process(pipes, 0, pipes->pippin, envp);
+			else if (i == pipes->n_cmd)
+				last_process(pipes, 1, pipes->pippin, envp);
+			else
+				middle_process(pipes, 1, pipes->pippin, envp);
 		}
-		close(pipes->fd[0]);
-		close(pipes->fd[1]);
+		i++;
 	}
+	waitpid(child, &status, 0);
+	ft_close_pipes(pipes, pipes->pippin);
+	if (WIFEXITED(status))
+		pipes->status = WEXITSTATUS(status);
 	status = pipes->status;
 	ft_free_all(pipes);
 	exit(status);
