@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 23:25:06 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:44:49 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ Needed: input_file cmd1 cmd2 cmd[n] output_file", pipes, 1);
 			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (pipes->fd[pipes->index] == -1)
 		error_args(argv[argc - 1], pipes, 1);
+	ft_printf("%d\n", pipes->fd[0]);
+	ft_printf("%d\n", pipes->fd[1]);
 	return (0);
 }
