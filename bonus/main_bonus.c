@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/11 00:01:23 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 17:33:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,18 @@ void	ft_free_all(t_data *pipes)
 	int	i;
 
 	i = 0;
-	while (i < 2)
+	while (i < pipes->n_cmd)
 	{
 		ft_free_array(pipes->cmd[i]);
 		free(pipes->path[i]);
+		free(pipes->pippin[i]);
 		i++;
 	}
+	free(pipes->check);
+	free(pipes->pippin);
 	free(pipes->cmd);
 	free(pipes->path);
 	free (pipes);
-}
-
-void	if_error(char *message, t_data *pipes, int n)
-{
-	ft_putendl_fd(message, 2);
-	if (n == 0)
-		return ;
-	ft_free_all(pipes);
-	exit (n);
 }
 
 int	main(int argc, char *argv[], char *envp[])

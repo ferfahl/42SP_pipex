@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 14:37:52 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 17:20:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	last_process(t_data *pipes, int n, char *envp[])
 		if_error("Last process did not work", pipes, 1);
 		exit(pipes->check[n]);
 	}
-	if_error("", pipes, 127);
+	if_error_silent(pipes, 127);
 }
 
 void	middle_process(t_data *pipes, int n, char *envp[])
@@ -57,7 +57,7 @@ void	middle_process(t_data *pipes, int n, char *envp[])
 		if_error("Middle process did not work", pipes, 1);
 		exit(pipes->check[n]);
 	}
-	if_error("", pipes, 127);
+	if_error_silent(pipes, 127);
 }
 
 void	first_process(t_data *pipes, int n, char *envp[])
@@ -74,7 +74,7 @@ void	first_process(t_data *pipes, int n, char *envp[])
 		if_error("First process did not work", pipes, 1);
 		exit(pipes->check[n]);
 	}
-	if_error("", pipes, 127);
+	if_error_silent(pipes, 127);
 }
 
 void	ft_close_pipes(t_data *pipes)

@@ -50,7 +50,8 @@ OTHER_FILES =	ft_hex_itoa.c \
 		ft_strlen_char.c \
 		ft_printf_array.c \
 		ft_strtrim_mod.c \
-		ft_free_array.c
+		ft_free_array.c \
+		ft_free_int.c
 
 #source files gnl
 GNL_FILES =	get_next_line.c \
