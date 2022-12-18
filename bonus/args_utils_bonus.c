@@ -6,13 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 18:51:27 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:10:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-
 
 int	check_error_args(int argc, char *argv[], t_data *pipes)
 {
