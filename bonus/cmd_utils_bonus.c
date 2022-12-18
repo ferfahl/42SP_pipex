@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 18:09:04 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:00:31 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*get_path(char *envp[], char *cmd)
 }
 
 
-int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
+void	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
 	int		index;
 	int		args;
@@ -79,11 +79,10 @@ int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 			ft_putstr_fd(pipes->cmd[index][0], 2);
 			if_error(": command not found", pipes, 0);
 			pipes->check[index] = -1;
-			close(pipes->fd[0]);
-			pipes->fd[0] = open("/dev/null", O_RDONLY);
+			close(pipes->infile);
+			pipes->infile = open("/dev/null", O_RDONLY);
 		}
 		index++;
 		args++;
 	}
-	return (0);
 }

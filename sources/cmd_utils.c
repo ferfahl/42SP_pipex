@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 23:29:05 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:53:50 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 			ft_putstr_fd(pipes->cmd[index - 2][0], 2);
 			if_error(": command not found", pipes, 0);
 			pipes->check[index - 2] = -1;
-			close(pipes->fd[index - 2]);
-			pipes->fd[index - 2] = open("/dev/null", O_RDONLY);
+			close(pipes->infile);
+			pipes->infile = open("/dev/null", O_RDONLY);
 		}
 		index++;
 	}

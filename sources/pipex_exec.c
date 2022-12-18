@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/17 20:34:35 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:50:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	second_process(t_data *pipes, int n, int pippin[], char *envp[])
 {
 	dup2(pippin[0], 0);
-	dup2(pipes->fd[n], 1);
+	dup2(pipes->outfile, 1);
 	close(pippin[1]);
 	close(pippin[0]);
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	if (pipes->check[n] == 0)
 	{
 		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
@@ -31,12 +31,12 @@ void	second_process(t_data *pipes, int n, int pippin[], char *envp[])
 
 void	first_process(t_data *pipes, int n, int pippin[], char *envp[])
 {
-	dup2(pipes->fd[n], 0);
+	dup2(pipes->infile, 0);
 	dup2(pippin[1], 1);
 	close(pippin[1]);
 	close(pippin[0]);
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	if (pipes->check[n] == 0)
 	{
 		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
@@ -67,8 +67,8 @@ void	pipex_start(t_data *pipes, char *envp[])
 	if (WIFEXITED(status))
 		pipes->status = WEXITSTATUS(status);
 	wait(NULL);
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	status = pipes->status;
 	ft_free_all(pipes);
 	exit(status);

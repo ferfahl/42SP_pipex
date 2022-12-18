@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 17:20:29 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:07:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	last_process(t_data *pipes, int n, char *envp[])
 
 	i = 0;
 	dup2(pipes->pippin[n - 1][0], STDIN);
-	dup2(pipes->fd[1], STDOUT);
+	dup2(pipes->outfile, STDOUT);
 	while (i < n)
 	{
 		close(pipes->pippin[i][1]);
 		close(pipes->pippin[i][0]);
 		i++;
 	}
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	if (pipes->check[n] == 0)
 	{
 		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
@@ -49,8 +49,8 @@ void	middle_process(t_data *pipes, int n, char *envp[])
 		close(pipes->pippin[i][0]);
 		i++;
 	}
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	if (pipes->check[n] == 0)
 	{
 		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
@@ -62,12 +62,12 @@ void	middle_process(t_data *pipes, int n, char *envp[])
 
 void	first_process(t_data *pipes, int n, char *envp[])
 {
-	dup2(pipes->fd[0], STDIN);
+	dup2(pipes->infile, STDIN);
 	dup2(pipes->pippin[n][1], STDOUT);
 	close(pipes->pippin[n][1]);
 	close(pipes->pippin[n][0]);
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 	if (pipes->check[n] == 0)
 	{
 		pipes->check[n] = execve(pipes->path[n], pipes->cmd[n], envp);
@@ -88,8 +88,8 @@ void	ft_close_pipes(t_data *pipes)
 		close(pipes->pippin[i][1]);
 		i++;
 	}
-	close(pipes->fd[0]);
-	close(pipes->fd[1]);
+	close(pipes->infile);
+	close(pipes->outfile);
 }
 
 void	pipex_start(t_data *pipes, char *envp[])
@@ -117,6 +117,7 @@ void	pipex_start(t_data *pipes, char *envp[])
 	}
 	ft_close_pipes(pipes);
 	while (wait(&status) != -1);
+		//não pode ser assim;
 	if (WIFEXITED(status))
 		pipes->status = WEXITSTATUS(status);
 	status = pipes->status;

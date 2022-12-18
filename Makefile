@@ -57,7 +57,8 @@ $(OBJPATH):
 
 #make libft
 $(LIBFT):
-		make -C $(LIBFT_PATH)
+		@echo "Compiling Libft..."
+		@make -C $(LIBFT_PATH)
 
 #rule name - make pipex
 $(NAME): $(LIBFT)  $(OBJ_MANDATORY)
