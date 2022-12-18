@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 17:02:28 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:09:04 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static char	*get_path(char *envp[], char *cmd)
 	char	*right_path;
 
 	i = 0;
+	if (cmd == NULL)
+		return (NULL);
 	while (ft_strncmp(envp[i], "PATH=", 5))
 		i++;
 	possible_paths = ft_split(&envp[i][5], ':');
