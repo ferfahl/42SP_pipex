@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 17:20:50 by feralves         ###   ########.fr       */
+/*   Created: 2022/12/18 22:42:32 by feralves          #+#    #+#             */
+/*   Updated: 2022/12/18 22:43:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 //Libraries
 # include <sys/types.h>

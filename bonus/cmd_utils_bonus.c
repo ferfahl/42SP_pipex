@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 18:09:04 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:46:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static char	*get_path(char *envp[], char *cmd)
 		return (NULL);
 	return (right_path);
 }
-
 
 int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
