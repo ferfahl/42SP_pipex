@@ -8,6 +8,7 @@ MANDATORY_FILES =	main.c \
 			pipex_exec.c
 
 BONUS_FILES =	main_bonus.c \
+			malloc_pipes_bonus.c \
 			cmd_utils_bonus.c \
 			cmd_utils2_bonus.c \
 			args_utils_bonus.c \

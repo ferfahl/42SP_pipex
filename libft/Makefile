@@ -106,31 +106,32 @@ $(OBJPATH):
 
 #compile libft
 $(OBJPATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
+		@cc $(FLAGS) -c $< -o $@ $(INCLUDE)
 
 #compile bonus
 $(OBJPATH)/%.o: $(BONUS_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
+		@cc $(FLAGS) -c $< -o $@ $(INCLUDE)
 
 #compile other functions
 $(OBJPATH)/%.o: $(OTHER_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
+		@cc $(FLAGS) -c $< -o $@ $(INCLUDE)
 
 #compile gnl
 $(OBJPATH)/%.o: $(GNL_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
+		@cc $(FLAGS) -c $< -o $@ $(INCLUDE)
 
 #compile ft_printf
 $(OBJPATH)/%.o: $(PRINTF_PATH)/%.c $(HEADER)
-		cc $(FLAGS) -c $< -o $@ $(INCLUDE)
+		@cc $(FLAGS) -c $< -o $@ $(INCLUDE)
 
 #rule name - make library
 $(NAME): $(OBJ) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_OTHER) $(OBJ_BONUS)
-		ar -rcs $(NAME) $(OBJ) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_OTHER) $(OBJ_BONUS)
+		@ar -rcs $(NAME) $(OBJ) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_OTHER) $(OBJ_BONUS)
+		@echo "Libft created!"
 
 #tester
 main:
-		cc $(FLAGS) main.c $(NAME) && clear && ./a.out
+		@cc $(FLAGS) main.c $(NAME) && clear && ./a.out
 
 #remove objects
 clean:

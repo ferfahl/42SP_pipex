@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/17 21:27:11 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:37:52 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	last_process(t_data *pipes, int n, char *envp[])
 	int	i;
 
 	i = 0;
-	ft_printf("last process\n");
 	dup2(pipes->pippin[n - 1][0], STDIN);
 	dup2(pipes->fd[1], STDOUT);
 	while (i < n)
@@ -42,7 +41,6 @@ void	middle_process(t_data *pipes, int n, char *envp[])
 	int	i;
 
 	i = 0;
-	ft_printf("%d process\n", n);
 	dup2(pipes->pippin[n][1], STDOUT);
 	dup2(pipes->pippin[n - 1][0], STDIN);
 	while (i < n)
@@ -64,7 +62,6 @@ void	middle_process(t_data *pipes, int n, char *envp[])
 
 void	first_process(t_data *pipes, int n, char *envp[])
 {
-	ft_printf("first process\n");
 	dup2(pipes->fd[0], STDIN);
 	dup2(pipes->pippin[n][1], STDOUT);
 	close(pipes->pippin[n][1]);
@@ -118,11 +115,8 @@ void	pipex_start(t_data *pipes, char *envp[])
 		}
 		i++;
 	}
-	ft_printf("Closing pipes...\n");
 	ft_close_pipes(pipes);
-	ft_printf("Closed all pipes...\n");
 	while (wait(&status) != -1);
-	ft_printf("Waited all process\n");
 	if (WIFEXITED(status))
 		pipes->status = WEXITSTATUS(status);
 	status = pipes->status;
