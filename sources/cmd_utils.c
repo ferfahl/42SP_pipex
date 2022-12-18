@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 18:53:50 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,36 +55,36 @@ static char	*get_path(char *envp[], char *cmd)
 	return (right_path);
 }
 
-void	ft_malloc_pipes(t_data *pipes)
+void	ft_malloc_p_data(t_data *p_data)
 {
-	pipes->cmd = malloc(sizeof (char **) * 2);
-	if (!pipes->cmd)
-		if_error("Malloc error", pipes, 1);
-	pipes->path = malloc(sizeof (char *) * 2);
-	if (!pipes->path)
-		if_error("Malloc error", pipes, 1);
+	p_data->cmd = malloc(sizeof (char **) * 2);
+	if (!p_data->cmd)
+		if_error("Malloc error", p_data, 1);
+	p_data->path = malloc(sizeof (char *) * 2);
+	if (!p_data->path)
+		if_error("Malloc error", p_data, 1);
 }
 
-int	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
+int	check_cmd(int argc, char *argv[], char *envp[], t_data *p_data)
 {
 	int		index;
 	char	*temp;
 
 	index = 2;
-	ft_malloc_pipes(pipes);
+	ft_malloc_p_data(p_data);
 	while (index <= argc - 2)
 	{
-		pipes->check[index - 2] = 0;
+		p_data->check[index - 2] = 0;
 		temp = argv[index];
-		pipes->cmd[index - 2] = ft_split_pipex(temp);
-		pipes->path[index - 2] = get_path(envp, pipes->cmd[index - 2][0]);
-		if (pipes->path[index - 2] == NULL)
+		p_data->cmd[index - 2] = ft_split_pipex(temp);
+		p_data->path[index - 2] = get_path(envp, p_data->cmd[index - 2][0]);
+		if (p_data->path[index - 2] == NULL)
 		{
-			ft_putstr_fd(pipes->cmd[index - 2][0], 2);
-			if_error(": command not found", pipes, 0);
-			pipes->check[index - 2] = -1;
-			close(pipes->infile);
-			pipes->infile = open("/dev/null", O_RDONLY);
+			ft_putstr_fd(p_data->cmd[index - 2][0], 2);
+			if_error(": command not found", p_data, 0);
+			p_data->check[index - 2] = -1;
+			close(p_data->infile);
+			p_data->infile = open("/dev/null", O_RDONLY);
 		}
 		index++;
 	}

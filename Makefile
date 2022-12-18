@@ -9,11 +9,12 @@ MANDATORY_FILES =	main.c \
 
 BONUS_FILES =	main_bonus.c \
 			errors_bonus.c \
-			malloc_pipes_bonus.c \
+			malloc_p_data_bonus.c \
 			cmd_utils_bonus.c \
 			cmd_utils2_bonus.c \
 			args_utils_bonus.c \
-			pipex_exec_bonus.c
+			pipex_exec_bonus.c \
+			here_doc.c 
 
 #static library's name
 NAME =		pipex

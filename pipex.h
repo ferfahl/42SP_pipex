@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 18:50:59 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct s_data
 # define STDOUT 1
 
 //Functions
-void	if_error(char *message, t_data *pipes, int n);
-void	ft_free_all(t_data *pipes);
-int		check_cmd(int argc, char *argv[], char *envp[], t_data *pipes);
-int		check_error_args(int argc, char *argv[], t_data *pipes);
-void	pipex_start(t_data *pipes, char *envp[]);
+void	if_error(char *message, t_data *p_data, int n);
+void	ft_free_all(t_data *p_data);
+int		check_cmd(int argc, char *argv[], char *envp[], t_data *p_data);
+int		check_error_args(int argc, char *argv[], t_data *p_data);
+void	pipex_start(t_data *p_data, char *envp[]);
 char	**ft_split_pipex(char *argument);
 
 #endif

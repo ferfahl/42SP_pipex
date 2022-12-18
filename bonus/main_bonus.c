@@ -6,41 +6,42 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:18:36 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	ft_free_all(t_data *pipes)
+void	ft_free_all(t_data *p_data)
 {
 	int	i;
 
 	i = 0;
-	while (i < pipes->n_cmd)
+	while (i < p_data->n_cmd)
 	{
-		ft_free_array(pipes->cmd[i]);
-		free(pipes->path[i]);
-		free(pipes->pippin[i]);
+		ft_free_array(p_data->cmd[i]);
+		free(p_data->path[i]);
+		free(p_data->pipes[i]);
 		i++;
 	}
-	free(pipes->check);
-	free(pipes->pippin);
-	free(pipes->cmd);
-	free(pipes->path);
-	free (pipes);
+	free(p_data->check);
+	free(p_data->pipes);
+	free(p_data->cmd);
+	free(p_data->path);
+	free (p_data);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_data	*pipes;
+	t_data	*p_data;
 
-	pipes = (t_data *)ft_calloc(1, sizeof(t_data));
-	if (pipes == NULL)
-		if_error("Calloc error", pipes, 1);
-	if (check_error_args(argc, argv, pipes))
+	p_data = (t_data *)ft_calloc(1, sizeof(t_data));
+	if (p_data == NULL)
+		if_error("Calloc error", p_data, 1);
+	if (check_error_args(argc, argv, p_data))
 		return (1);
-	(void)envp;
-	check_cmd(argc, argv, envp, pipes);
-	pipex_start(pipes, envp);
+	if (p_data->here_doc) //não feita ainda (cansei pelo dia)
+		here_doc(p_data);
+	check_cmd(argc, argv, envp, p_data);
+	pipex_start(p_data, envp);
 }

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:16:44 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*get_path(char *envp[], char *cmd)
 	return (right_path);
 }
 
-void	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
+void	check_cmd(int argc, char *argv[], char *envp[], t_data *p_data)
 {
 	int		index;
 	int		args;
@@ -65,20 +65,20 @@ void	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 
 	args = 2;
 	index = 0;
-	pipes->n_cmd = argc - 3;
-	while (index < pipes->n_cmd)
+	p_data->n_cmd = argc - 3;
+	while (index < p_data->n_cmd)
 	{
-		pipes->check[index] = 0;
+		p_data->check[index] = 0;
 		temp = argv[args];
-		pipes->cmd[index] = ft_split_pipex(temp);
-		pipes->path[index] = get_path(envp, pipes->cmd[index][0]);
-		if (pipes->path[index] == NULL)
+		p_data->cmd[index] = ft_split_pipex(temp);
+		p_data->path[index] = get_path(envp, p_data->cmd[index][0]);
+		if (p_data->path[index] == NULL)
 		{
-			ft_putstr_fd(pipes->cmd[index][0], 2);
-			if_error(": command not found", pipes, 0);
-			pipes->check[index] = -1;
-			close(pipes->infile);
-			pipes->infile = open("/dev/null", O_RDONLY);
+			ft_putstr_fd(p_data->cmd[index][0], 2);
+			if_error(": command not found", p_data, 0);
+			p_data->check[index] = -1;
+			close(p_data->infile);
+			p_data->infile = open("/dev/null", O_RDONLY);
 		}
 		index++;
 		args++;
