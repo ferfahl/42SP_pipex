@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:11:27 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:16:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static char	*get_path(char *envp[], char *cmd)
 	return (right_path);
 }
 
-
 void	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 {
 	int		index;
@@ -67,7 +66,6 @@ void	check_cmd(int argc, char *argv[], char *envp[], t_data *pipes)
 	args = 2;
 	index = 0;
 	pipes->n_cmd = argc - 3;
-	ft_malloc_pipes(pipes);
 	while (index < pipes->n_cmd)
 	{
 		pipes->check[index] = 0;

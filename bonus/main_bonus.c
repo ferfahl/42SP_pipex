@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 22:45:50 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:18:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int argc, char *argv[], char *envp[])
 	if (check_error_args(argc, argv, pipes))
 		return (1);
 	(void)envp;
-	if (check_cmd(argc, argv, envp, pipes))
-		return (1);
+	check_cmd(argc, argv, envp, pipes);
 	pipex_start(pipes, envp);
 }

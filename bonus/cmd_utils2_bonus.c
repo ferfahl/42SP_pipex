@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:03:32 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 23:29:51 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:20:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static char	ft_expander(char *argument, char previous, char after)
 		{
 			value = argument[index];
 			index++;
-			while (argument[index] != value)
+			while (argument[index] != value && argument[index] != '\0')
 			{
 				if (argument[index] == previous)
 					argument[index] = after;
 				index++;
 			}
+			if (argument[index] == '\0')
+				argument[index] = value;
 		}
 		index++;
 	}
