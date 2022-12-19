@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 22:21:24 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:59:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Needed: input_file cmd1 cmd2 output_file", p_data, 1);
 	}
 	p_data->index++;
 	p_data->outfile = open(
-			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
+			argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (p_data->outfile == -1)
 		error_args(argv[argc - 1], p_data, 1);
 	return (0);

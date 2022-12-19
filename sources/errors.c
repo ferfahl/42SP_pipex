@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 22:20:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 22:26:34 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:56:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	error_args(char *file, t_data *p_data, int n)
 	if (n == 0)
 		return ;
 	free (p_data);
-	exit (1);
+	exit (n);
 }
 
 void	if_error_quotes(char *message, t_data *p_data)
