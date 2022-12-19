@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 22:07:59 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:39:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 	int		n_cmd;
 	int		infile;
 	int		outfile;
+	int		here_doc;
 	int		*check;
 	int		**pipes;
 	char	**path;
