@@ -5,11 +5,12 @@ MANDATORY_FILES =	main.c \
 			cmd_utils.c \
 			cmd_utils2.c \
 			args_utils.c \
-			pipex_exec.c
+			pipex_exec.c \
+			errors.c
 
 BONUS_FILES =	main_bonus.c \
 			errors_bonus.c \
-			malloc_p_data_bonus.c \
+			malloc_pipes_bonus.c \
 			cmd_utils_bonus.c \
 			cmd_utils2_bonus.c \
 			args_utils_bonus.c \
@@ -32,7 +33,7 @@ INCLUDE =	-I ./ -I $(LIBFT_PATH)
 
 #compiling
 CC =	gcc
-FLAGS =	-Wall -Werror -Wextra -g3 -O3
+FLAGS =	-Wall -Werror -Wextra -g3 #-O3
 GDB =	gdb
 VAL =	valgrind --trace-children=yes --track-fds=yes --leak-check=full --track-origins=yes
 

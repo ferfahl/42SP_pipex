@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:03:32 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/10 22:40:10 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:20:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,30 @@ static void	ft_reswitch(char **cmd)
 	}
 }
 
+int	check_quotes(char *argument)
+{
+	int		index;
+	int		counter;
+	
+	counter = 0;
+	index = 0;
+	while (argument[index])
+	{
+		if (argument[index] == '\'' || argument[index] == '\"')
+			counter++;
+		index++;
+	}
+	if (counter % 2 != 0)
+		return (-1);
+	return (0);
+}
+
 char	**ft_split_pipex(char *argument)
 {
 	char	**cmd;
 
+	if (check_quotes(argument))
+		return (NULL);
 	ft_expander(argument, ' ', TEMP_SPACE);
 	cmd = ft_split(argument, ' ');
 	ft_reswitch(cmd);

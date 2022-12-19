@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:22:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	second_process(t_data *p_data, int n, int pipes[], char *envp[])
 		if_error("Second process did not work", p_data, 1);
 		exit(p_data->check[n]);
 	}
-	if_error("", p_data, 127);
+	if_error_silent(p_data, 127);
 }
 
 void	first_process(t_data *p_data, int n, int pipes[], char *envp[])
@@ -43,7 +43,7 @@ void	first_process(t_data *p_data, int n, int pipes[], char *envp[])
 		if_error("First process did not work", p_data, 1);
 		exit(p_data->check[n]);
 	}
-	if_error("", p_data, 127);
+	if_error_silent(p_data, 127);
 }
 
 void	pipex_start(t_data *p_data, char *envp[])

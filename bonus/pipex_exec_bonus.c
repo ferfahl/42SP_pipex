@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:12:17 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:05:14 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	pipex_start(t_data *p_data, char *envp[]) //too many lines
 	pid_t	child;
 
 	i = 0;
-	ft_malloc_p_data(p_data);
 	while (i < p_data->n_cmd)
 	{
 		if (pipe(p_data->pipes[i]))

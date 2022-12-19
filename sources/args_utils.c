@@ -6,21 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:11:19 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:21:24 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	error_args(char *file, t_data *p_data, int n)
-{
-	ft_putstr_fd("bash: ", 2);
-	perror(file);
-	if (n == 0)
-		return ;
-	free (p_data);
-	exit (1);
-}
 
 int	check_error_args(int argc, char *argv[], t_data *p_data)
 {

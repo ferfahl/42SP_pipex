@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:03:32 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:32:33 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:48:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ static char	ft_expander(char *argument, char previous, char after)
 		{
 			value = argument[index];
 			index++;
-			while (argument[index] != value && argument[index] != '\0') //não tem byte nulo, como checar?
+			while (argument[index] != value)
 			{
 				if (argument[index] == previous)
 					argument[index] = after;
 				index++;
 			}
-			if (argument[index] == '\0')
-				argument[index] = value;
 		}
 		index++;
 	}
@@ -55,10 +53,30 @@ static void	ft_reswitch(char **cmd)
 	}
 }
 
+int	check_quotes(char *argument)
+{
+	int		index;
+	int		counter;
+	
+	counter = 0;
+	index = 0;
+	while (argument[index])
+	{
+		if (argument[index] == '\'' || argument[index] == '\"')
+			counter++;
+		index++;
+	}
+	if (counter % 2 != 0)
+		return (-1);
+	return (0);
+}
+
 char	**ft_split_pipex(char *argument)
 {
 	char	**cmd;
 
+	if (check_quotes(argument))
+		return (NULL);
 	ft_expander(argument, ' ', TEMP_SPACE);
 	cmd = ft_split(argument, ' ');
 	ft_reswitch(cmd);

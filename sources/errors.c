@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_bonus.c                                     :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 17:12:59 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 22:17:06 by feralves         ###   ########.fr       */
+/*   Created: 2022/12/18 22:20:54 by feralves          #+#    #+#             */
+/*   Updated: 2022/12/18 22:26:34 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 void	error_args(char *file, t_data *p_data, int n)
 {
@@ -24,19 +24,9 @@ void	error_args(char *file, t_data *p_data, int n)
 
 void	if_error_quotes(char *message, t_data *p_data)
 {
-	int	i;
-
-	i = 0;
 	ft_putendl_fd(message, 2);
-	while (i < p_data->n_cmd)
-	{
-		free(p_data->pipes[i]);
-		i++;
-	}
-	free (p_data->check);
 	free (p_data->cmd);
 	free (p_data->path);
-	free (p_data->pipes);
 	free (p_data);
 	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:21:03 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@ void	ft_free_all(t_data *p_data)
 	free(p_data->cmd);
 	free(p_data->path);
 	free (p_data);
-}
-
-void	if_error(char *message, t_data *p_data, int n)
-{
-	ft_putendl_fd(message, 2);
-	if (n == 0)
-		return ;
-	ft_free_all(p_data);
-	exit (n);
 }
 
 int	main(int argc, char *argv[], char *envp[])

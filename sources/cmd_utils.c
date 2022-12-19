@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:19:58 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:31:26 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ void	ft_malloc_p_data(t_data *p_data)
 int	check_cmd(int argc, char *argv[], char *envp[], t_data *p_data)
 {
 	int		index;
-	char	*temp;
 
 	index = 2;
 	ft_malloc_p_data(p_data);
 	while (index <= argc - 2)
 	{
 		p_data->check[index - 2] = 0;
-		temp = argv[index];
-		p_data->cmd[index - 2] = ft_split_pipex(temp);
+		p_data->cmd[index - 2] = ft_split_pipex(argv[index]);
+		if (!p_data->cmd[index - 2])
+			if_error_quotes("Error: quotes not closed", p_data);
 		p_data->path[index - 2] = get_path(envp, p_data->cmd[index - 2][0]);
 		if (p_data->path[index - 2] == NULL)
 		{

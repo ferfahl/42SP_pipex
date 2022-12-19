@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 19:36:12 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:07:59 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 void	if_error(char *message, t_data *p_data, int n);
 void	error_args(char *file, t_data *p_data, int n);
 void	if_error_silent(t_data *p_data, int n);
+void	if_error_quotes(char *message, t_data *p_data);
 void	ft_free_all(t_data *p_data);
 void	check_cmd(int argc, char *argv[], char *envp[], t_data *p_data);
 int		check_error_args(int argc, char *argv[], t_data *p_data);
