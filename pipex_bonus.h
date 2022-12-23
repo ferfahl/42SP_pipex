@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:14:54 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/19 15:39:39 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/23 22:23:27 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ int		check_error_args(int argc, char *argv[], t_data *p_data);
 void	pipex_start(t_data *p_data, char *envp[]);
 char	**ft_split_pipex(char *argument);
 void	ft_malloc_p_data(t_data *p_data);
+void	first_process(t_data *p_data, int n, char *envp[]);
+void	middle_process(t_data *p_data, int n, char *envp[]);
+void	last_process(t_data *p_data, int n, char *envp[]);
 
 #endif

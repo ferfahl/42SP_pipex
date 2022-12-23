@@ -15,7 +15,7 @@ BONUS_FILES =	main_bonus.c \
 			cmd_utils2_bonus.c \
 			args_utils_bonus.c \
 			pipex_exec_bonus.c \
-			here_doc.c 
+			process_bonus.c
 
 #static library's name
 NAME =		pipex

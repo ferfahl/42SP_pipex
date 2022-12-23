@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:37:24 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/19 15:37:41 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/23 22:19:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	main(int argc, char *argv[], char *envp[])
 		if_error("Calloc error", p_data, 1);
 	if (check_error_args(argc, argv, p_data))
 		return (1);
-	if (p_data->here_doc)
-	 	here_doc(p_data);
 	check_cmd(argc, argv, envp, p_data);
 	pipex_start(p_data, envp);
 }

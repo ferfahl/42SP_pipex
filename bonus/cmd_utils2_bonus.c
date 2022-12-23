@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:03:32 by feralves          #+#    #+#             */
-/*   Updated: 2022/12/18 21:48:09 by feralves         ###   ########.fr       */
+/*   Updated: 2022/12/23 22:21:14 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_quotes(char *argument)
 {
 	int		index;
 	int		counter;
-	
+
 	counter = 0;
 	index = 0;
 	while (argument[index])
