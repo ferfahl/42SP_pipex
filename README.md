@@ -2,6 +2,7 @@
 
 This project will let you discover in detail a UNIX mechanism that you already know by using it in your program.
 
+[![feralves's 42 pipex Score](https://badge42.vercel.app/api/v2/cli7l4sim001108mvngbgwmeh/project/2871980)](https://github.com/JaeSeoKim/badge42)
 
 ----
 
